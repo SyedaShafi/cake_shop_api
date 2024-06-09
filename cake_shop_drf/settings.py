@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-@0qz*jr!&lyqn1^n6coco^fg0^qxesbdfxc$3c26qenn1m7+e_
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-# CSRF_TRUSTED_ORIGINS = ['live link domain',  'https://*.127.0.0.1' ]
+CSRF_TRUSTED_ORIGINS = ['https://cake-shop-uc4x.onrender.com',  'https://*.127.0.0.1' ]
 
 # Application definition
 

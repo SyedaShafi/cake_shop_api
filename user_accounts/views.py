@@ -36,7 +36,7 @@ class RegistrationAPIView(APIView):
             user = serializer.save()
             token = default_token_generator.make_token(user)
             uid = urlsafe_base64_encode(force_bytes(user.pk))
-            confirm_link = f"http://127.0.0.1:8000/user/active/{uid}/{token}/"
+            confirm_link = f"https://cake-shop-uc4x.onrender.com/user/active/{uid}/{token}/"
             email_subject = "Confirm Your Account"
             email_body = render_to_string('confirm_email.html', {'confirm_link' : confirm_link})
             email = EmailMultiAlternatives(email_subject , '', to=[user.email])
@@ -55,9 +55,9 @@ def activate(request, uid64, token):
     if user is not None and default_token_generator.check_token(user, token):
         user.is_active = True
         user.save()
-        return HttpResponseRedirect('http://127.0.0.1:5500/login.html')
+        return HttpResponseRedirect('https://regal-hotteok-8465bd.netlify.app/login')
     else:
-        return HttpResponseRedirect('http://127.0.0.1:5500/register.html')
+        return HttpResponseRedirect('https://regal-hotteok-8465bd.netlify.app/signup')
 
 
 class LoginAPIView(APIView):
