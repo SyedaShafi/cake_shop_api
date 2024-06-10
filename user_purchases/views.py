@@ -8,9 +8,15 @@ from category.permissions import IsAdminUserRole
 # Create your views here.
 
 class UserPurchaseList(generics.ListAPIView):
-    queryset = UserPurchase.objects.all()
+    # queryset = UserPurchase.objects.all()
     serializer_class = UserPurchaseSerializerWithAllFields
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
+    def get_queryset(self):
+        user_id = self.request.query_params.get('userId')
+
+        if user_id:
+            return UserPurchase.objects.filter(user=user_id)
+        return UserPurchase.objects.none()
 
 
 class UserPurchaseDetailView(generics.RetrieveAPIView):
